@@ -1,3 +1,4 @@
+require 'colorize'
 class GPFile
   attr_accessor :index, :name, :extension, :created_at, :modified_at, :accessed_at, :attributes
   def  initialize(filename)
@@ -17,10 +18,10 @@ class GPFile
   def display
     puts "- - - - - - - - - - - - - - - - - - - -"
     puts "#{@index}:"
-    puts "    #{@name}"
+    puts "    #{@name}".yellow
     puts "    #{@extension}"
     puts "    Created at: #{@created_at} /// Modified at: #{@modified_at}"
-    puts "    #{@attributes.first unless @attributes.nil?}"
+    puts "    #{@attributes.first unless @attributes.nil?}".cyan
   end
 
   def interested?

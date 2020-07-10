@@ -1,7 +1,10 @@
 require './gp_file'
 require './tracks'
-# require 'colorize'
-Dir.chdir("C:/Users/MalekMFS/Documents/@My Music/Tab/0My Tab0")
+require 'yaml'
+
+config = YAML.load_file('config.yml')
+path = config['tabs_path']
+Dir.chdir(path)
 #puts Dir.pwd
 # track = tracks[469]
 #  puts track.display
