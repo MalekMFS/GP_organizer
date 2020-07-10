@@ -8,20 +8,21 @@ class GPFile
     @created_at  = File.birthtime(filename)
     @modified_at = File.mtime(filename)
     @accessed_at = File.atime(filename)
+    #TODO add '+' and '++'
     @interested  = filename.include?('##') ? true : false
      @name.sub!('##', '')
-    @attributes  = filename.scan(/\(([^\)]+)\)/).last
+    @attributes  = filename.scan(/\(([^\)]+)\)/).flatten.first #FIXME why it returns nested array of depth 2?!
      @name.sub!(/\(.*?\)/, '')
      @name.strip!
   end
 
   def display
     puts "- - - - - - - - - - - - - - - - - - - -"
-    puts "#{@index}:"
+    puts "#{@index}:" + " #{'##' if @interested}"
     puts "    #{@name}".yellow
     puts "    #{@extension}"
     puts "    Created at: #{@created_at} /// Modified at: #{@modified_at}"
-    puts "    #{@attributes.first unless @attributes.nil?}".cyan
+    puts "    #{@attributes}".cyan
   end
 
   def interested?
@@ -29,7 +30,7 @@ class GPFile
     @interested
   end
 
-  def contain?(instring, options={})
+  def in_attributes?(instring, options={})
     if @attributes.nil?
       return false
     else

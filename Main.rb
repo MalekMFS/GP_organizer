@@ -14,14 +14,14 @@ Dir.chdir(path)
 tracks = Tracks.new#Initialize
 
 loop do
-  puts "Menu:\n 0:Exit\n 1:Display all\n 2:Find by key".cyan
+  puts "Menu:\n 0:Exit\n 1:Display all\n 2:Search in attributes".cyan
   puts "Whats your answer?"
   input = gets.chomp
   case input
     when "1" #Display all
       tracks.display_all
     when "2"
-      puts "Enter string to find:"
+      puts "Enter a string to find:"
       key = gets.chomp
       tracks.search(key, {attributes: true, name: true})
     when "0"

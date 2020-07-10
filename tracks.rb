@@ -20,15 +20,18 @@ class Tracks
   end
 
   def search(instring, options={})
-    selected =  []
+    selected = []
+    count = 0
     @tracks.each do |track|
-      if !track.nil? && track.contain?(instring, options)
+      if !track.nil? && track.in_attributes?(instring, options)
         selected << track
+        count += 1
       end
     end
      selected.each do |s|
        s.display
      end
+     puts "\nFound #{count} tabs."
   end
 
 end
